@@ -20,8 +20,8 @@ INCLUDE_DIR=./include/
 #targets
 all: main test
 
-main: main.o stack.o
-	$(CC) main.o stack.o -o brainfuck $(FLAGS) $(INCLUDE) 
+main: main.o stack.o scan.o
+	$(CC) main.o stack.o scan.o -o brainfuck $(FLAGS) $(INCLUDE) 
 
 main.o: $(SRC_DIR)main.c
 	$(CC) -c $(SRC_DIR)main.c $(FLAGS) $(INCLUDE)
@@ -34,6 +34,9 @@ test.o: $(SRC_DIR)test.c
 
 stack.o: $(SRC_DIR)stack.c $(INCLUDE_DIR)stack.h 
 	$(CC) -c $(SRC_DIR)stack.c $(FLAGS) $(INCLUDE)
+
+scan.o: $(SRC_DIR)scan.c $(INCLUDE_DIR)scan.h
+	$(CC) -c $(SRC_DIR)scan.c $(FLAGS) $(INCLUDE)
 
 clean:
 	rm *.o

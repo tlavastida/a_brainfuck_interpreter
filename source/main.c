@@ -11,6 +11,8 @@
 //includes
 #include <stdio.h>
 #include <stdlib.h>
+#include "stack.h"
+#include "scan.h"
 
 //function declarations
 
@@ -24,6 +26,17 @@ int main( int argc, char* argv[] ) {
     else
 	infile = fopen( argv[1], "r" );
     
+    char buf[1000]; //FIX SIZE ASAP, TEMP CODE FOR TESTING DO NOT KEEP
+    int i, num;
+
+    if( first_pass( infile, buf, &num ) != 0 ) {
+	//error
+	return -1;
+    }
+
+    for( i = 0; i < num; i++ ) {
+	printf("%c\n", buf[i] );
+    }
     
     //cleanup resources
     fclose( infile );
