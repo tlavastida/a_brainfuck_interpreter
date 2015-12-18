@@ -27,8 +27,7 @@ int main() {
 
     //test push
     for ( i = 1; i <= 10; i++ ) {
-	
-	push( &test_stack, i );
+	push( &test_stack, i , NULL);
     
     }
 
@@ -36,7 +35,7 @@ int main() {
 
     //test pop
     while ( test_stack.size != 0 ) {
-	ret = pop( &test_stack );
+	ret = pop( &test_stack, NULL );
 	printf("ret = %d\n", ret);
     }
 
@@ -48,16 +47,15 @@ int main() {
     for (i = 0; i < len; i++) {
 	if ( str[i] == '(' ) {
 	    //push
-	    push( &test_stack, 1 );
+	    push( &test_stack, 1, NULL );
 	}
 	else if( str[i] == ')' ) {
-	    //pop
 	    if( test_stack.size == size_at_start ) {
 		pass = -1;
 		break;
 	    }
-	    else {
-		ret = pop( &test_stack );
+	    else { //pop
+		ret = pop( &test_stack, NULL );
 	    }
 	}
     }

@@ -24,8 +24,8 @@ typedef struct {
 void new_stack( stack* this_stack );
 
 //pushes a node onto the stack containing new_data
-void push( stack* this_stack, int new_data );
+void push( stack* this_stack, int new_data, char* new_ptr );
 
 //deletes top of stack and returns data contained in node
-int pop( stack* this_stack );
+int pop( stack* this_stack, char** ret_ptr );
 

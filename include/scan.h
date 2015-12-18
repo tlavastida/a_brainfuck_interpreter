@@ -14,4 +14,3 @@
 //function declarations
 int first_pass( FILE* infile, char* buffer, int* num_toks );
 
-int second_pass( char* buffer );

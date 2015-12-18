@@ -16,6 +16,7 @@
 struct stack_node {
     struct stack_node* next;
     int data;
+    char* ptr;
 };
 
 void new_stack( stack* this_stack ) {
@@ -27,7 +28,7 @@ void new_stack( stack* this_stack ) {
 	exit(-1);
 }
 
-void push( stack* this_stack, int new_data ) {
+void push( stack* this_stack, int new_data, char* new_ptr ) {
     node *new_node, *tmp;
     if( this_stack->head == NULL ) { 
 	//empty stack case
@@ -37,7 +38,7 @@ void push( stack* this_stack, int new_data ) {
 	    exit(-1);
 	new_node->next = NULL;
 	new_node->data = new_data;
-	
+	new_node->ptr = new_ptr;
 	//set top of stack to new_node
 	this_stack->head = new_node;
 	this_stack->size = 1;
@@ -50,7 +51,7 @@ void push( stack* this_stack, int new_data ) {
 	    exit(-1);
 	new_node->next = NULL;
 	new_node->data = new_data;
-
+	new_node->ptr = new_ptr;
 	//put new node on stack
         tmp = this_stack->head;
 	this_stack->head = new_node;
@@ -59,13 +60,14 @@ void push( stack* this_stack, int new_data ) {
     }
 }
 
-int pop( stack* this_stack ) {
+int pop( stack* this_stack, char** ret_ptr ) {
     int ret = -1;
     node *tmp;
     if ( !this_stack || !this_stack->head )
 	exit(-1);
     else {
 	ret = this_stack->head->data;
+	if( ret_ptr != NULL ) *ret_ptr = this_stack->head->ptr;
 	tmp = this_stack->head->next;
 	free(this_stack->head);
 	this_stack->head = tmp;
